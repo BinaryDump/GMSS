@@ -1,0 +1,47 @@
+﻿<Window x:Class="GiveMeSomeSheets.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GiveMeSomeSheets"
+        mc:Ignorable="d"
+        Title="Give me some sheets !" Height="350" Width="525">
+
+    <Window.DataContext>
+        <local:MainWindowViewModel />
+    </Window.DataContext>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Image Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" Margin="0,25,0,0"
+            Source="Resources\waiter_256.png" />
+
+        <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <Label Content="Give me " />
+            <TextBox VerticalAlignment="Center" Width="25" Text="{Binding NbSheets}" />
+            <Label Content=" sheet(s)." />
+        </StackPanel>
+
+        <Button Grid.Column="1" Grid.Row="2" Content="Go" Command="{Binding SendToPrinterButton}" />
+
+            <Label Grid.Column="0" Grid.Row="3"
+                   HorizontalAlignment="right" VerticalAlignment="Center"
+                   Content="Printer: " />
+            <ComboBox Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="2"
+                      VerticalAlignment="center" Margin="0,0,20,0"
+                      SelectedItem="{Binding CBPrinter}"
+                ItemsSource="{Binding PrinterList}" SelectedIndex="0"
+                      IsSynchronizedWithCurrentItem="True"/>
+    </Grid>
+</Window>
