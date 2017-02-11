@@ -27,15 +27,31 @@
         <Image Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" Margin="0,25,0,0"
             Source="Resources\waiter_256.png" />
 
+        <StackPanel Grid.Column="2" Grid.Row="0" Grid.RowSpan="2">
+            <Label HorizontalAlignment="Right" VerticalAlignment="Top"
+               Content="©BinaryDump" />
+            <Image Source="Resources\fist-png-20.png"
+                   HorizontalAlignment="Center" VerticalAlignment="Center"
+                   Height="100"/>
+        </StackPanel>
+
+
         <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
             <Label Content="Give me " />
             <TextBox VerticalAlignment="Center" Width="25" Text="{Binding NbSheets}" />
             <Label Content=" sheet(s)." />
         </StackPanel>
 
-        <Button Grid.Column="1" Grid.Row="2" Content="Go" Command="{Binding SendToPrinterButton}" />
 
-            <Label Grid.Column="0" Grid.Row="3"
+        <Button Grid.Column="1" Grid.Row="2" Command="{Binding SendToPrinterButton}">
+            <StackPanel Orientation="Horizontal">
+                
+            <Label Content="Go" HorizontalAlignment="Center" VerticalAlignment="Center" />
+            
+            </StackPanel>
+        </Button>
+            
+        <Label Grid.Column="0" Grid.Row="3"
                    HorizontalAlignment="right" VerticalAlignment="Center"
                    Content="Printer: " />
             <ComboBox Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="2"

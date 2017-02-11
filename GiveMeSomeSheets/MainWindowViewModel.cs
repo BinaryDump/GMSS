@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Drawing.Printing;
 using System.IO;
 using System.Linq;
@@ -19,6 +20,7 @@ namespace GiveMeSomeSheets
       
         public MainWindowViewModel()
         {
+            CheckIfAlreadyLaunched();
             NbSheets = 1;
             PrinterList = new ObservableCollection<string>();
             GetPrinterList();
@@ -100,6 +102,17 @@ namespace GiveMeSomeSheets
                 PrinterList.Add(PrinterSettings.InstalledPrinters[count]);
             }
         }
+
+        public void CheckIfAlreadyLaunched()
+        {
+            if(Process.GetProcessesByName(Process.GetCurrentProcess().ProcessName).Length > 1)
+            {
+                MessageBox.Show("Application is already running.", "Already running.", MessageBoxButton.OK, MessageBoxImage.Information);
+                Application.Current.Shutdown();
+                return;
+            }
+        }
+
         #endregion
 
         #region ## PropertyChanged ##
